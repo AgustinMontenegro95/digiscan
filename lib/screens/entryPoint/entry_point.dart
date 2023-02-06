@@ -1,12 +1,11 @@
 import 'dart:math';
 
+import 'package:digit_predictor/constants.dart';
+import 'package:digit_predictor/screens/home/set_photo_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:ia_number_predictor/constants.dart';
-import 'package:ia_number_predictor/screens/home/set_photo_screen.dart';
 import 'package:rive/rive.dart';
 
 import '../../model/menu.dart';
-import 'components/btm_nav_item.dart';
 import 'components/menu_btn.dart';
 import 'components/side_bar.dart';
 

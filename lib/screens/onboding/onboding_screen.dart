@@ -1,11 +1,10 @@
 import 'dart:ui';
 
+import 'package:digit_predictor/screens/entryPoint/entry_point.dart';
 import 'package:flutter/material.dart';
-import 'package:ia_number_predictor/screens/entryPoint/entry_point.dart';
 import 'package:rive/rive.dart';
 
 import 'components/animated_btn.dart';
-import 'components/sign_in_dialog.dart';
 
 class OnbodingScreen extends StatefulWidget {
   const OnbodingScreen({super.key});
@@ -69,11 +68,11 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                   children: [
                     const Spacer(),
                     SizedBox(
-                      width: 260,
+                      width: MediaQuery.of(context).size.width * 0.8,
                       child: Column(
                         children: const [
                           Text(
-                            "Learn design & code",
+                            "Digit Predictor",
                             style: TextStyle(
                               fontSize: 60,
                               fontWeight: FontWeight.w700,

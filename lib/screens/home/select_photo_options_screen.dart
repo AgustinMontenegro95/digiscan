@@ -1,5 +1,5 @@
+import 'package:digit_predictor/screens/home/components/re_usable_select_photo_button.dart';
 import 'package:flutter/material.dart';
-import 'package:ia_number_predictor/screens/home/components/re_usable_select_photo_button.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SelectPhotoOptionsScreen extends StatelessWidget {

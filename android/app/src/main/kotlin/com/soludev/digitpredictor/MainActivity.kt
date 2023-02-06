@@ -1,4 +1,4 @@
-package com.example.ia_number_predictor
+package com.soludev.digitpredictor
 
 import io.flutter.embedding.android.FlutterActivity
 

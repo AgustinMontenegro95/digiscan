@@ -1,7 +1,7 @@
+import 'package:digit_predictor/screens/entryPoint/entry_point.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ia_number_predictor/screens/entryPoint/entry_point.dart';
 import 'package:rive/rive.dart';
 
 class SignInForm extends StatefulWidget {

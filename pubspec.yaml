@@ -1,5 +1,5 @@
-name: ia_number_predictor
-description: Aplicación predictiva de números.
+name: digit_predictor
+description: Aplicación predictiva de dígitos.
 
 publish_to: 'none' 
 
@@ -22,6 +22,9 @@ dependencies:
 
   #Artificial Intelligence
   flutter_tflite: ^1.0.1
+
+  #Change app name
+  change_app_package_name: ^0.1.3
 
 dev_dependencies:
   flutter_test:

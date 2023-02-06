@@ -1,9 +1,9 @@
 import 'dart:io';
 
+import 'package:digit_predictor/screens/home/components/common_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
-import 'package:ia_number_predictor/screens/home/components/common_buttons.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'select_photo_options_screen.dart';
