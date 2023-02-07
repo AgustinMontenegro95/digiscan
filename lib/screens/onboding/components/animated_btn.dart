@@ -23,7 +23,7 @@ class AnimatedBtn extends StatelessWidget {
         child: Stack(
           children: [
             RiveAnimation.asset(
-              "assets/RiveAssets/button.riv",
+              "assets/riveAssets/button.riv",
               controllers: [_btnAnimationController],
             ),
             Positioned.fill(
@@ -35,7 +35,7 @@ class AnimatedBtn extends StatelessWidget {
                   const Icon(CupertinoIcons.arrow_right),
                   const SizedBox(width: 8),
                   Text(
-                    "Start the course",
+                    "Comenzar ahora",
                     style: Theme.of(context).textTheme.button,
                   )
                 ],

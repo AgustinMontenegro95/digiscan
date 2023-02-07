@@ -32,13 +32,13 @@ class _SideBarState extends State<SideBar> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const InfoCard(
-                name: "Abu Anwar",
-                bio: "YouTuber",
+                name: "Digit Predictor",
+                bio: "App",
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 24, top: 32, bottom: 16),
                 child: Text(
-                  "Browse".toUpperCase(),
+                  "NAVEGACIÓN",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!
@@ -64,7 +64,7 @@ class _SideBarState extends State<SideBar> {
               Padding(
                 padding: const EdgeInsets.only(left: 24, top: 40, bottom: 16),
                 child: Text(
-                  "History".toUpperCase(),
+                  "SOBRE NOSOTROS",
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!

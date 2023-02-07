@@ -174,7 +174,7 @@ class _SignInFormState extends State<SignInForm> {
         isShowLoading
             ? CustomPositioned(
                 child: RiveAnimation.asset(
-                  'assets/RiveAssets/check.riv',
+                  'assets/riveAssets/check.riv',
                   fit: BoxFit.cover,
                   onInit: _onCheckRiveInit,
                 ),
@@ -184,7 +184,7 @@ class _SignInFormState extends State<SignInForm> {
             ? CustomPositioned(
                 scale: 6,
                 child: RiveAnimation.asset(
-                  "assets/RiveAssets/confetti.riv",
+                  "assets/riveAssets/confetti.riv",
                   onInit: _onConfettiRiveInit,
                   fit: BoxFit.cover,
                 ),

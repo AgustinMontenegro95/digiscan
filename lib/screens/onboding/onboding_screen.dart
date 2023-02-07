@@ -37,7 +37,7 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
             left: 100,
             bottom: 100,
             child: Image.asset(
-              "assets/Backgrounds/Spline.png",
+              "assets/backgrounds/spline.png",
             ),
           ),
           Positioned.fill(
@@ -47,7 +47,7 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
             ),
           ),
           const RiveAnimation.asset(
-            "assets/RiveAssets/shapes.riv",
+            "assets/riveAssets/shapes.riv",
           ),
           Positioned.fill(
             child: BackdropFilter(

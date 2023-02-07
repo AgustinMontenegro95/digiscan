@@ -28,7 +28,7 @@ class MenuBtn extends StatelessWidget {
             ],
           ),
           child: RiveAnimation.asset(
-            "assets/RiveAssets/menu_button.riv",
+            "assets/riveAssets/menu_button.riv",
             onInit: riveOnInit,
           ),
         ),
