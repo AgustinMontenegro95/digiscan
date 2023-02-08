@@ -16,6 +16,8 @@ dependencies:
   rive: ^0.9.1
   flutter_svg: ^1.1.6
 
+  permission_handler: ^10.2.0
+
   #Photograpy
   image_cropper: ^2.0.3
   image_picker: ^0.8.5+3
@@ -37,10 +39,10 @@ flutter:
 
   assets:
     - assets/artificialIntelligence/
-    - assets/backgrounds/
+    - assets/Backgrounds/
     - assets/icons/
     - assets/images/
-    - assets/riveAssets/
+    - assets/RiveAssets/
  
   fonts:
     - family: Intel

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'components/select_photo_options_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,6 +29,7 @@ class _HomePageState extends State<HomePage> {
     loadModel().then((value) {
       setState(() {});
     });
+    _listenForPermissionStatus();
   }
 
   loadModel() async {
@@ -56,17 +58,84 @@ class _HomePageState extends State<HomePage> {
   }
 
   //
+  PermissionStatus _permissionStatus = PermissionStatus.denied;
+  void _listenForPermissionStatus() async {
+    final status = await Permission.camera.status;
+    setState(() => _permissionStatus = status);
+  }
 
   Future _pickImage(ImageSource source) async {
+    //var status = await Permission.camera.status;
+    setState(() {});
     try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      File? img = File(image.path);
-      img = await _cropImage(imageFile: img);
-      setState(() {
-        _image = img;
-        Navigator.of(context).pop();
-      });
+      print(_permissionStatus);
+      switch (_permissionStatus) {
+        case PermissionStatus.denied:
+          print("denegado");
+          Permission.camera.request();
+          //openAppSettings();
+          setState(() {
+            _listenForPermissionStatus();
+          });
+          break;
+        case PermissionStatus.granted:
+          print("aceptado");
+          final image = await ImagePicker().pickImage(source: source);
+          if (image == null) return;
+          File? img = File(image.path);
+          img = await _cropImage(imageFile: img);
+          setState(() {
+            _image = img;
+            Navigator.of(context).pop();
+          });
+          break;
+        case PermissionStatus.limited:
+          print("limitado");
+          break;
+        default:
+          print("otro");
+          break;
+      }
+
+      /* if (status.isRestricted) {
+        /* El usuario optó por no volver a ver nunca más el cuadro de diálogo de solicitud de permiso 
+          para esta aplicación. La única forma de cambiar el estado del permiso ahora es dejar que el
+          el usuario lo habilita manualmente en la configuración del sistema. */
+        openAppSettings();
+      }
+
+      if (status.isDenied) {
+        // No pedimos permiso todavía o el permiso ha sido denegado antes pero no de forma permanente.
+        Permission.camera.request();
+
+        //openAppSettings();
+      }
+
+      /* if (status.isGranted) {
+        // Permiso concedido
+        final image = await ImagePicker().pickImage(source: source);
+        if (image == null) return;
+        File? img = File(image.path);
+        img = await _cropImage(imageFile: img);
+        setState(() {
+          _image = img;
+          Navigator.of(context).pop();
+        });
+      } */
+
+      if (await Permission.camera.request().isGranted) {
+        // O el permiso ya se concedió antes o el usuario lo acaba de conceder.
+        print("cocedido");
+        // Permiso concedido
+        final image = await ImagePicker().pickImage(source: source);
+        if (image == null) return;
+        File? img = File(image.path);
+        img = await _cropImage(imageFile: img);
+        setState(() {
+          _image = img;
+          Navigator.of(context).pop();
+        });
+      } */
     } on PlatformException catch (e) {
       print(e);
       Navigator.of(context).pop();
@@ -85,7 +154,8 @@ class _HomePageState extends State<HomePage> {
           toolbarColor: Colors.blueGrey.shade900,
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.original,
-          lockAspectRatio: false,
+          //cambiado a true
+          lockAspectRatio: true,
         ),
       ],
     );
