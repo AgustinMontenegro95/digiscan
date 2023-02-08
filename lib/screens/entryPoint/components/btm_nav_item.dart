@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-import '../../../model/menu.dart';
+import '../../../model/menu_model.dart';
 import 'animated_bar.dart';
 
 class BtmNavItem extends StatelessWidget {
@@ -12,10 +12,10 @@ class BtmNavItem extends StatelessWidget {
       required this.riveOnInit,
       required this.selectedNav});
 
-  final Menu navBar;
+  final MenuModel navBar;
   final VoidCallback press;
   final ValueChanged<Artboard> riveOnInit;
-  final Menu selectedNav;
+  final MenuModel selectedNav;
 
   @override
   Widget build(BuildContext context) {

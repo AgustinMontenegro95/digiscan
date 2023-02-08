@@ -1,60 +1,60 @@
 import 'rive_model.dart';
 
-class Menu {
+class MenuModel {
   final String title;
   final RiveModel rive;
 
-  Menu({required this.title, required this.rive});
+  MenuModel({required this.title, required this.rive});
 }
 
-List<Menu> sidebarMenus = [
-  Menu(
-    title: "Home",
+List<MenuModel> sidebarMenus = [
+  MenuModel(
+    title: "Principal",
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
         artboard: "HOME",
         stateMachineName: "HOME_interactivity"),
   ),
-  Menu(
+  MenuModel(
     title: "Search",
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
         artboard: "SEARCH",
         stateMachineName: "SEARCH_Interactivity"),
   ),
-  Menu(
-    title: "Favorites",
+  MenuModel(
+    title: "Inteligencia Artificial",
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
         artboard: "LIKE/STAR",
         stateMachineName: "STAR_Interactivity"),
   ),
-  Menu(
-    title: "Help",
+  MenuModel(
+    title: "Ayuda",
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
         artboard: "CHAT",
         stateMachineName: "CHAT_Interactivity"),
   ),
 ];
-List<Menu> sidebarMenus2 = [
-  Menu(
-    title: "History",
+List<MenuModel> sidebarMenus2 = [
+  MenuModel(
+    title: "Habiñak, Carlos Alberto",
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
-        artboard: "TIMER",
-        stateMachineName: "TIMER_Interactivity"),
+        artboard: "USER",
+        stateMachineName: "USER_Interactivity"),
   ),
-  Menu(
-    title: "Notifications",
+  MenuModel(
+    title: "Montenegro, Agustin",
     rive: RiveModel(
         src: "assets/RiveAssets/icons.riv",
-        artboard: "BELL",
-        stateMachineName: "BELL_Interactivity"),
+        artboard: "USER",
+        stateMachineName: "USER_Interactivity"),
   ),
 ];
 
-List<Menu> bottomNavItems = [
+/* List<Menu> bottomNavItems = [
   Menu(
     title: "Chat",
     rive: RiveModel(
@@ -90,4 +90,4 @@ List<Menu> bottomNavItems = [
         artboard: "USER",
         stateMachineName: "USER_Interactivity"),
   ),
-];
+]; */

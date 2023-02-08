@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-import '../../../model/menu.dart';
+import '../../../model/menu_model.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu(
@@ -11,10 +11,10 @@ class SideMenu extends StatelessWidget {
       required this.riveOnInit,
       required this.selectedMenu});
 
-  final Menu menu;
+  final MenuModel menu;
   final VoidCallback press;
   final ValueChanged<Artboard> riveOnInit;
-  final Menu selectedMenu;
+  final MenuModel selectedMenu;
 
   @override
   Widget build(BuildContext context) {

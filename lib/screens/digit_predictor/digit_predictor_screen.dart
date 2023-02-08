@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:digit_predictor/screens/home/components/common_buttons.dart';
+import 'package:digit_predictor/model/result_model.dart';
+import 'package:digit_predictor/screens/digit_predictor/components/common_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
@@ -9,16 +11,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'components/select_photo_options_screen.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  static const id = 'set_photo_screen';
+class DigitPredictorScreen extends StatefulWidget {
+  const DigitPredictorScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<DigitPredictorScreen> createState() => _DigitPredictorScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   File? _image;
 
   //
@@ -46,8 +46,19 @@ class _HomePageState extends State<HomePage> {
       path: image.path,
     );
     print("predict = " + output.toString());
+
+    //no es un json valido, faltan comillas
+    List<ResultModel>? resultList = [];
+    ResultModel resultModel;
+    for (var result in output!) {
+      resultModel = ResultModel.fromJson(json.decode(result.toString()));
+      resultList.add(resultModel);
+    }
+
+    print(resultList);
+
     setState(() {
-      _outputs = output!;
+      _outputs = output;
     });
   }
 

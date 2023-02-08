@@ -6,14 +6,14 @@ import 'package:rive/rive.dart';
 
 import 'components/animated_btn.dart';
 
-class OnbodingScreen extends StatefulWidget {
-  const OnbodingScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<OnbodingScreen> createState() => _OnbodingScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _OnbodingScreenState extends State<OnbodingScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   late RiveAnimationController _btnAnimationController;
 
   bool isShowSignInDialog = false;
@@ -98,22 +98,6 @@ class _OnbodingScreenState extends State<OnbodingScreen> {
                             builder: (context) => const EntryPoint(),
                           ),
                         );
-                        /* Future.delayed(
-                          const Duration(milliseconds: 800),
-                          () {
-                            setState(() {
-                              isShowSignInDialog = true;
-                            });
-                            showCustomDialog(
-                              context,
-                              onValue: (_) {
-                                setState(() {
-                                  isShowSignInDialog = false;
-                                });
-                              },
-                            );
-                          },
-                        ); */
                       },
                     ),
                     const Padding(

@@ -16,6 +16,10 @@ dependencies:
   rive: ^0.9.1
   flutter_svg: ^1.1.6
 
+  #Url open
+  url_launcher: ^6.1.9
+
+  #Permission 
   permission_handler: ^10.2.0
 
   #Photograpy
@@ -42,6 +46,7 @@ flutter:
     - assets/Backgrounds/
     - assets/icons/
     - assets/images/
+    - assets/images/social_media/
     - assets/RiveAssets/
  
   fonts:

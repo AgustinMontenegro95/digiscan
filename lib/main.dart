@@ -1,5 +1,5 @@
-import 'package:digit_predictor/screens/onboding/onboding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:digit_predictor/routes/custom_routes.dart';
 
 void main() {
   runApp(const DigitPredictor());
@@ -28,7 +28,8 @@ class DigitPredictor extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      home: const OnbodingScreen(),
+      initialRoute: "/",
+      routes: customRoutes,
     );
   }
 }

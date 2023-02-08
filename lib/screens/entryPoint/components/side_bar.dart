@@ -1,6 +1,9 @@
+import 'package:digit_predictor/screens/entryPoint/entry_point.dart';
+import 'package:digit_predictor/screens/home/home_screen.dart';
+import 'package:digit_predictor/screens/montenegro_agustin/montenegro_agustin_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../model/menu.dart';
+import '../../../model/menu_model.dart';
 import '../../../utils/rive_utils.dart';
 import 'info_card.dart';
 import 'side_menu.dart';
@@ -13,7 +16,7 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
-  Menu selectedSideMenu = sidebarMenus.first;
+  MenuModel selectedSideMenu = sidebarMenus.first;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -80,6 +83,30 @@ class _SideBarState extends State<SideBar> {
                           setState(() {
                             selectedSideMenu = menu;
                           });
+                          // Redirect page
+                          switch (menu.title) {
+                            case "Habiñak, Carlos Alberto":
+                              Future.delayed(const Duration(milliseconds: 500),
+                                  () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeScreen()));
+                              });
+                              break;
+                            case "Montenegro, Agustin":
+                              Future.delayed(const Duration(milliseconds: 500),
+                                  () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MontenegroAgustinScreen()));
+                              });
+                              break;
+                            default:
+                          }
                         },
                         riveOnInit: (artboard) {
                           menu.rive.status = RiveUtils.getRiveInput(artboard,
