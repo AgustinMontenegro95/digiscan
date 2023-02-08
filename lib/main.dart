@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:digit_predictor/routes/custom_routes.dart';
+import 'package:digit_predictor/screens/home/home_screen.dart';
 
 void main() {
   runApp(const DigitPredictor());
@@ -28,8 +28,7 @@ class DigitPredictor extends StatelessWidget {
           errorBorder: defaultInputBorder,
         ),
       ),
-      initialRoute: "/",
-      routes: customRoutes,
+      home: const HomeScreen(),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:digit_predictor/screens/digit_predictor/digit_predictor_screen.dart';
 import 'package:digit_predictor/constants.dart';
 
 import '../../model/menu_model.dart';
@@ -9,7 +8,8 @@ import 'components/menu_btn.dart';
 import 'components/side_bar.dart';
 
 class EntryPoint extends StatefulWidget {
-  const EntryPoint({super.key});
+  final Widget screenRedirect;
+  const EntryPoint({super.key, required this.screenRedirect});
 
   @override
   State<EntryPoint> createState() => _EntryPointState();
@@ -76,11 +76,11 @@ class _EntryPointState extends State<EntryPoint>
               offset: Offset(animation.value * 265, 0),
               child: Transform.scale(
                 scale: scalAnimation.value,
-                child: const ClipRRect(
-                  borderRadius: BorderRadius.all(
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(24),
                   ),
-                  child: DigitPredictorScreen(),
+                  child: widget.screenRedirect /* DigitPredictorScreen() */,
                 ),
               ),
             ),

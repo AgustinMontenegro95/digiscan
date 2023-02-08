@@ -15,10 +15,29 @@ class BodyMontenegroAgustin extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                welcomeMA,
-                textAlign: TextAlign.end,
-                style: const TextStyle(fontSize: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  RichText(
+                      textAlign: TextAlign.end,
+                      text: TextSpan(
+                          style: const TextStyle(
+                              color: Colors.black), //style for all textspan
+                          children: [
+                            const TextSpan(
+                                text: "Hola, soy ",
+                                style: TextStyle(fontSize: 25)),
+                            TextSpan(
+                                text: "Agustin",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue.shade800)),
+                            const TextSpan(
+                                text: ", el\nencargado del desarrollo.",
+                                style: TextStyle(fontSize: 25)),
+                          ])),
+                ],
               ),
               const SizedBox(height: 20),
               CircleAvatar(
@@ -27,9 +46,11 @@ class BodyMontenegroAgustin extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(3), // Border radius
                   child: ClipOval(
-                      child: Image.asset(
-                    'assets/images/not-image.jpg',
-                  )),
+                    child: Image.asset(
+                      'assets/images/profile-agustin.jpg',
+                      fit: BoxFit.fitHeight,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -43,7 +64,10 @@ class BodyMontenegroAgustin extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(height: 20),
-              const Text("¿Quieres saber más?"),
+              const Text(
+                "¿Quieres saber más?",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 20),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

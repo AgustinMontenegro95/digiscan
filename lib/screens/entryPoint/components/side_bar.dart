@@ -101,8 +101,9 @@ class _SideBarState extends State<SideBar> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const MontenegroAgustinScreen()));
+                                        builder: (context) => const EntryPoint(
+                                            screenRedirect:
+                                                MontenegroAgustinScreen())));
                               });
                               break;
                             default:

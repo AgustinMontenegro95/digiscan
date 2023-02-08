@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:digit_predictor/screens/digit_predictor/digit_predictor_screen.dart';
 import 'package:digit_predictor/screens/entryPoint/entry_point.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
@@ -95,7 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const EntryPoint(),
+                            builder: (context) => const EntryPoint(
+                                screenRedirect: DigitPredictorScreen()),
                           ),
                         );
                       },

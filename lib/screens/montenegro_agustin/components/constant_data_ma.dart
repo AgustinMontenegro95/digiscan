@@ -1,4 +1,4 @@
-String welcomeMA = "Hola, soy Agustin,\nel encargado del desarrollo.";
+String welcomeMA = "Hola, soy Agustin, el\nencargado del desarrollo.";
 
 String occupationMA =
     "Desarrollador de software - Estudiante - COO & co-founder de SoluDev, desarrollo de soluciones y proyectos de software a medida.";
