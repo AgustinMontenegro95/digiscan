@@ -48,7 +48,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
 
     //no es un json valido, faltan comillas
     List<ResultModel>? resultList = [];
-    ResultModel resultModel;
+    ResultModel resultModel = ResultModel(confidence: 0.98, index: 5, label: 2);
     for (var result in output!) {
       resultModel = ResultModel.fromJson(json.decode(result.toString()));
       resultList.add(resultModel);

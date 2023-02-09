@@ -1,4 +1,5 @@
 import 'package:digit_predictor/screens/entry_point/entry_point.dart';
+import 'package:digit_predictor/screens/habinak_carlos/habinak_carlos_screen.dart';
 import 'package:digit_predictor/screens/help/help_screen.dart';
 import 'package:digit_predictor/screens/home/home_screen.dart';
 import 'package:digit_predictor/screens/montenegro_agustin/montenegro_agustin_screen.dart';
@@ -102,8 +103,9 @@ class _SideBarState extends State<SideBar> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const HomeScreen()));
+                                        builder: (context) => const EntryPoint(
+                                            screenRedirect:
+                                                HabinakCarlosScreen())));
                               });
                               break;
                             case "Montenegro, Agustin":

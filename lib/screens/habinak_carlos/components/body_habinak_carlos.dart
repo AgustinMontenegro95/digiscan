@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/material.dart';
+import 'package:digit_predictor/screens/habinak_carlos/components/constant_data_hc.dart';
 import 'package:digit_predictor/utils/social_media_button.dart';
-import 'package:digit_predictor/screens/montenegro_agustin/components/constant_data_ma.dart';
+import 'package:flutter/material.dart';
 
-class BodyMontenegroAgustin extends StatelessWidget {
-  const BodyMontenegroAgustin({super.key});
+class BodyHabinakCarlos extends StatelessWidget {
+  const BodyHabinakCarlos({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +25,18 @@ class BodyMontenegroAgustin extends StatelessWidget {
                       style: const TextStyle(
                           color: Colors.black), //style for all textspan
                       children: [
+                        const TextSpan(
+                            text: "Hola, soy ", style: TextStyle(fontSize: 25)),
                         TextSpan(
-                            text: aWelcomeMA,
-                            style: const TextStyle(fontSize: 25)),
-                        TextSpan(
-                            text: bWelcomeMA,
+                            text: "Carlos",
                             style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blue.shade800)),
-                        TextSpan(
-                            text: cWelcomeMA,
-                            style: const TextStyle(fontSize: 25)),
+                        const TextSpan(
+                            text:
+                                ", el\nencargado de la\ninteligencia artificial.",
+                            style: TextStyle(fontSize: 25)),
                       ],
                     ),
                   ),
@@ -51,7 +51,7 @@ class BodyMontenegroAgustin extends StatelessWidget {
                     padding: const EdgeInsets.all(3), // Border radius
                     child: ClipOval(
                       child: Image.asset(
-                        'assets/images/profile-agustin.jpg',
+                        'assets/images/not-image.jpg',
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -60,12 +60,12 @@ class BodyMontenegroAgustin extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Text(
-                occupationMA,
+                occupationHC,
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(height: 20),
               Text(
-                descriptionMA,
+                descriptionHC,
                 textAlign: TextAlign.justify,
               ),
               const SizedBox(height: 20),
@@ -79,19 +79,19 @@ class BodyMontenegroAgustin extends StatelessWidget {
                   children: const [
                     SocialMediaButton(
                         socialMedia: "linkedin",
-                        url: "https://www.linkedin.com/in/montenegro-agustin/"),
-                    SocialMediaButton(
+                        url:
+                            "https://www.linkedin.com/in/carlos-alberto-habi%C3%B1ak-a21b144b/"),
+                    /* SocialMediaButton(
                         socialMedia: "github",
-                        url: "https://github.com/AgustinMontenegro95"),
+                        url: "https://github.com/AgustinMontenegro95"), */
                     SocialMediaButton(
-                        socialMedia: "gmail",
-                        email: "agustinmontenegroam10@gmail.com"),
+                        socialMedia: "gmail", email: "carloshabinak@gmail.com"),
                     SocialMediaButton(
                         socialMedia: "instagram",
-                        url: "https://www.instagram.com/agu_montenegr"),
+                        url: "https://www.instagram.com/carloshabinak/"),
                     SocialMediaButton(
                         socialMedia: "whatsapp",
-                        url: "https://wa.me/3854117816"),
+                        url: "https://wa.me/3856879520"),
                   ]),
             ],
           ),
