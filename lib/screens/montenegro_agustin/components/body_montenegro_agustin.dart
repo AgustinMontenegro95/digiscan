@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:digit_predictor/utils/social_media_button.dart';
 import 'package:digit_predictor/screens/montenegro_agustin/components/constant_data_ma.dart';
@@ -19,36 +20,39 @@ class BodyMontenegroAgustin extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   RichText(
-                      textAlign: TextAlign.end,
-                      text: TextSpan(
-                          style: const TextStyle(
-                              color: Colors.black), //style for all textspan
-                          children: [
-                            const TextSpan(
-                                text: "Hola, soy ",
-                                style: TextStyle(fontSize: 25)),
-                            TextSpan(
-                                text: "Agustin",
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue.shade800)),
-                            const TextSpan(
-                                text: ", el\nencargado del desarrollo.",
-                                style: TextStyle(fontSize: 25)),
-                          ])),
+                    textAlign: TextAlign.end,
+                    text: TextSpan(
+                      style: const TextStyle(
+                          color: Colors.black), //style for all textspan
+                      children: [
+                        const TextSpan(
+                            text: "Hola, soy ", style: TextStyle(fontSize: 25)),
+                        TextSpan(
+                            text: "Agustin",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue.shade800)),
+                        const TextSpan(
+                            text: ", el\nencargado del desarrollo.",
+                            style: TextStyle(fontSize: 25)),
+                      ],
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
-              CircleAvatar(
-                radius: 100,
-                backgroundColor: Colors.grey.shade400,
-                child: Padding(
-                  padding: const EdgeInsets.all(3), // Border radius
-                  child: ClipOval(
-                    child: Image.asset(
-                      'assets/images/profile-agustin.jpg',
-                      fit: BoxFit.fitHeight,
+              ZoomIn(
+                child: CircleAvatar(
+                  radius: 100,
+                  backgroundColor: Colors.grey.shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(3), // Border radius
+                    child: ClipOval(
+                      child: Image.asset(
+                        'assets/images/profile-agustin.jpg',
+                        fit: BoxFit.fitHeight,
+                      ),
                     ),
                   ),
                 ),

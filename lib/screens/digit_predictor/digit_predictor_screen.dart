@@ -319,7 +319,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.9,
-                      height: 50,
+                      height: 100,
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
                           color: Colors.grey.shade300,

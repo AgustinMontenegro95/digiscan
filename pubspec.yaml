@@ -16,6 +16,9 @@ dependencies:
   rive: ^0.9.1
   flutter_svg: ^1.1.6
 
+  #Animate
+  animate_do: ^3.0.2
+
   #Url open
   url_launcher: ^6.1.9
 

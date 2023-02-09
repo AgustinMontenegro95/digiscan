@@ -2,6 +2,7 @@ import 'package:digit_predictor/screens/entryPoint/entry_point.dart';
 import 'package:digit_predictor/screens/home/home_screen.dart';
 import 'package:digit_predictor/screens/montenegro_agustin/montenegro_agustin_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../model/menu_model.dart';
 import '../../../utils/rive_utils.dart';
@@ -115,6 +116,15 @@ class _SideBarState extends State<SideBar> {
                         },
                       ))
                   .toList(),
+              Center(
+                  child: Container(
+                padding: const EdgeInsets.only(top: 50),
+                child: GestureDetector(
+                  onTap: () => launchUrlString("https://soludevs.web.app"),
+                  child: Image.asset("assets/images/soludev_logo_mono.png",
+                      width: 75),
+                ),
+              )),
             ],
           ),
         ),
