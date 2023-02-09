@@ -1,4 +1,5 @@
-import 'package:digit_predictor/screens/entryPoint/entry_point.dart';
+import 'package:digit_predictor/screens/entry_point/entry_point.dart';
+import 'package:digit_predictor/screens/help/help_screen.dart';
 import 'package:digit_predictor/screens/home/home_screen.dart';
 import 'package:digit_predictor/screens/montenegro_agustin/montenegro_agustin_screen.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,15 @@ class _SideBarState extends State<SideBar> {
                           setState(() {
                             selectedSideMenu = menu;
                           });
+                          //borrar
+                          Future.delayed(const Duration(milliseconds: 500), () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const EntryPoint(
+                                        screenRedirect: HelpScreen())));
+                          });
+                          //
                         },
                         riveOnInit: (artboard) {
                           menu.rive.status = RiveUtils.getRiveInput(artboard,

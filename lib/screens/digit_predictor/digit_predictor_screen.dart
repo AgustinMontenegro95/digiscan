@@ -21,15 +21,14 @@ class DigitPredictorScreen extends StatefulWidget {
 class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   File? _image;
 
-  //
   List _outputs = [];
+
   @override
   void initState() {
     super.initState();
     loadModel().then((value) {
       setState(() {});
     });
-    _listenForPermissionStatus();
   }
 
   loadModel() async {
@@ -62,98 +61,52 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
     });
   }
 
-  @override
-  void dispose() {
-    Tflite.close();
-    super.dispose();
-  }
+  Future pickImage(ImageSource source) async {
+    var status = source == ImageSource.camera
+        ? await Permission.camera.status
+        : await Permission.storage.status;
 
-  //
-  PermissionStatus _permissionStatus = PermissionStatus.denied;
-  void _listenForPermissionStatus() async {
-    final status = await Permission.camera.status;
-    setState(() => _permissionStatus = status);
-  }
+    var permissionRequest = source == ImageSource.camera
+        ? await Permission.camera.request().isGranted
+        : await Permission.storage.request().isGranted;
 
-  Future _pickImage(ImageSource source) async {
-    //var status = await Permission.camera.status;
-    setState(() {});
     try {
-      print(_permissionStatus);
-      switch (_permissionStatus) {
-        case PermissionStatus.denied:
-          print("denegado");
-          Permission.camera.request();
-          //openAppSettings();
-          setState(() {
-            _listenForPermissionStatus();
-          });
-          break;
-        case PermissionStatus.granted:
-          print("aceptado");
-          final image = await ImagePicker().pickImage(source: source);
-          if (image == null) return;
-          File? img = File(image.path);
-          img = await _cropImage(imageFile: img);
-          setState(() {
-            _image = img;
-            Navigator.of(context).pop();
-          });
-          break;
-        case PermissionStatus.limited:
-          print("limitado");
-          break;
-        default:
-          print("otro");
-          break;
-      }
-
-      /* if (status.isRestricted) {
-        /* El usuario optó por no volver a ver nunca más el cuadro de diálogo de solicitud de permiso 
+      if (source == ImageSource.camera) {
+        print(status);
+        if (status.isGranted) {
+          permissionGranted(source);
+        } else if (status.isDenied) {
+          // No pedimos permiso todavía o el permiso ha sido denegado antes pero no de forma permanente.
+          if (permissionRequest) {
+            // El permiso ya se concedió antes o el usuario lo acaba de conceder.
+            permissionGranted(source);
+          }
+        } else if (status.isRestricted ||
+            status.isLimited ||
+            status.isPermanentlyDenied) {
+          /* El usuario optó por no volver a ver nunca más el cuadro de diálogo de solicitud de permiso 
           para esta aplicación. La única forma de cambiar el estado del permiso ahora es dejar que el
           el usuario lo habilita manualmente en la configuración del sistema. */
-        openAppSettings();
+          openAppSettings();
+        }
       }
-
-      if (status.isDenied) {
-        // No pedimos permiso todavía o el permiso ha sido denegado antes pero no de forma permanente.
-        Permission.camera.request();
-
-        //openAppSettings();
-      }
-
-      /* if (status.isGranted) {
-        // Permiso concedido
-        final image = await ImagePicker().pickImage(source: source);
-        if (image == null) return;
-        File? img = File(image.path);
-        img = await _cropImage(imageFile: img);
-        setState(() {
-          _image = img;
-          Navigator.of(context).pop();
-        });
-      } */
-
-      if (await Permission.camera.request().isGranted) {
-        // O el permiso ya se concedió antes o el usuario lo acaba de conceder.
-        print("cocedido");
-        // Permiso concedido
-        final image = await ImagePicker().pickImage(source: source);
-        if (image == null) return;
-        File? img = File(image.path);
-        img = await _cropImage(imageFile: img);
-        setState(() {
-          _image = img;
-          Navigator.of(context).pop();
-        });
-      } */
     } on PlatformException catch (e) {
-      print(e);
-      Navigator.of(context).pop();
+      debugPrint(e.toString());
     }
   }
 
-  Future<File?> _cropImage({required File imageFile}) async {
+  permissionGranted(ImageSource source) async {
+    final image = await ImagePicker().pickImage(source: source);
+    if (image == null) return;
+    File? img = File(image.path);
+    img = await cropImage(imageFile: img);
+    setState(() {
+      _image = img;
+      Navigator.of(context).pop();
+    });
+  }
+
+  Future<File?> cropImage({required File imageFile}) async {
     CroppedFile? croppedImage = await ImageCropper().cropImage(
       sourcePath: imageFile.path,
       aspectRatioPresets: [
@@ -174,7 +127,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
     return File(croppedImage.path);
   }
 
-  void _showSelectPhotoOptions(BuildContext context) {
+  void showSelectPhotoOptions(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -192,11 +145,17 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
             return SingleChildScrollView(
               controller: scrollController,
               child: SelectPhotoOptionsScreen(
-                onTap: _pickImage,
+                onTap: pickImage,
               ),
             );
           }),
     );
+  }
+
+  @override
+  void dispose() {
+    Tflite.close();
+    super.dispose();
   }
 
   @override
@@ -261,7 +220,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                     child: GestureDetector(
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
-                        _showSelectPhotoOptions(context);
+                        showSelectPhotoOptions(context);
                       },
                       child: Center(
                         child: Container(
@@ -297,7 +256,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                   ),
                 ),
                 CommonButtons(
-                  onTap: () => _showSelectPhotoOptions(context),
+                  onTap: () => showSelectPhotoOptions(context),
                   backgroundColor: Colors.black,
                   textColor: Colors.white,
                   textLabel:

@@ -30,33 +30,33 @@ class SelectPhotoOptionsScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          Column(children: [
-            SelectPhoto(
-              onTap: () => onTap(ImageSource.gallery),
-              icon: Icons.image,
-              textLabel: 'Abrir galería',
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Center(
-              child: Text(
-                'O',
-                style: TextStyle(fontSize: 18),
+          const SizedBox(height: 20),
+          Column(
+            children: [
+              SelectPhoto(
+                onTap: () => onTap(ImageSource.gallery),
+                icon: Icons.image,
+                textLabel: 'Abrir galería',
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            SelectPhoto(
-              onTap: () => onTap(ImageSource.camera),
-              icon: Icons.camera_alt_outlined,
-              textLabel: 'Usar cámara',
-            ),
-          ])
+              const SizedBox(
+                height: 10,
+              ),
+              const Center(
+                child: Text(
+                  'O',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SelectPhoto(
+                onTap: () => onTap(ImageSource.camera),
+                icon: Icons.camera_alt_outlined,
+                textLabel: 'Usar cámara',
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -16,7 +16,7 @@ class DigitPredictor extends StatelessWidget {
       title: 'Digit Predictor',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFEEF1F8),
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
         fontFamily: "Intel",
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,

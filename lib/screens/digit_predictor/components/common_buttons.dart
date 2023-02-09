@@ -21,7 +21,6 @@ class CommonButtons extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         elevation: 5,
         backgroundColor: backgroundColor,
-        //primary: backgroundColor,
         shape: const StadiumBorder(),
       ),
       child: Padding(
