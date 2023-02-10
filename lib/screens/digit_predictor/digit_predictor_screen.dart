@@ -21,7 +21,7 @@ class DigitPredictorScreen extends StatefulWidget {
 class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   File? _image;
 
-  List _outputs = [];
+  List<ResultModel>? _resultList = [];
 
   @override
   void initState() {
@@ -44,20 +44,26 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
     var output = await Tflite.runModelOnImage(
       path: image.path,
     );
-    print("predict = " + output.toString());
 
-    //no es un json valido, faltan comillas
     List<ResultModel>? resultList = [];
-    ResultModel resultModel = ResultModel(confidence: 0.98, index: 5, label: 2);
+
+    print(
+        "predict = ${output.toString().replaceAll("index", "\"index\"").replaceAll("label", "\"label\"").replaceAll("confidence", "\"confidence\"")}");
+
+    ResultModel resultModel;
     for (var result in output!) {
-      resultModel = ResultModel.fromJson(json.decode(result.toString()));
+      resultModel = ResultModel.fromJson(json.decode(result
+          .toString()
+          .replaceAll("index", "\"index\"")
+          .replaceAll("label", "\"label\"")
+          .replaceAll("confidence", "\"confidence\"")));
       resultList.add(resultModel);
     }
 
-    print(resultList);
+    print(resultList[0].confidence);
 
     setState(() {
-      _outputs = output;
+      _resultList = resultList;
     });
   }
 
@@ -71,24 +77,22 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
         : await Permission.storage.request().isGranted;
 
     try {
-      if (source == ImageSource.camera) {
-        print(status);
-        if (status.isGranted) {
+      print(status);
+      if (status.isGranted) {
+        permissionGranted(source);
+      } else if (status.isDenied) {
+        // No pedimos permiso todavía o el permiso ha sido denegado antes pero no de forma permanente.
+        if (permissionRequest) {
+          // El permiso ya se concedió antes o el usuario lo acaba de conceder.
           permissionGranted(source);
-        } else if (status.isDenied) {
-          // No pedimos permiso todavía o el permiso ha sido denegado antes pero no de forma permanente.
-          if (permissionRequest) {
-            // El permiso ya se concedió antes o el usuario lo acaba de conceder.
-            permissionGranted(source);
-          }
-        } else if (status.isRestricted ||
-            status.isLimited ||
-            status.isPermanentlyDenied) {
-          /* El usuario optó por no volver a ver nunca más el cuadro de diálogo de solicitud de permiso 
+        }
+      } else if (status.isRestricted ||
+          status.isLimited ||
+          status.isPermanentlyDenied) {
+        /* El usuario optó por no volver a ver nunca más el cuadro de diálogo de solicitud de permiso 
           para esta aplicación. La única forma de cambiar el estado del permiso ahora es dejar que el
           el usuario lo habilita manualmente en la configuración del sistema. */
-          openAppSettings();
-        }
+        openAppSettings();
       }
     } on PlatformException catch (e) {
       debugPrint(e.toString());
@@ -284,13 +288,54 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                           color: Colors.grey.shade300,
                           borderRadius: BorderRadius.circular(20)),
                       child: Center(
-                          child: Text(
-                        _outputs.toString(),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.black87,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              _resultList!.length == 1
+                                  ? _resultList![0].label.toString()
+                                  : _resultList!.length.toString(),
+                              style: const TextStyle(
+                                fontSize: 40,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  _resultList!.length == 1
+                                      ? "Confianza: ${_resultList![0].confidence}"
+                                      : _resultList!.length.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                Text(
+                                  _resultList!.length == 1
+                                      ? "Indice: ${_resultList![0].index}"
+                                      : _resultList!.length.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                Text(
+                                  _resultList!.length == 1
+                                      ? "Etiqueta: ${_resultList![0].label}"
+                                      : _resultList!.length.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                      )),
+                      ),
                     ),
                   ],
                 ),
@@ -301,6 +346,13 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                           //funcionalidad
                           //File? _image;
                           //tratar imagen
+
+                          /* // Carga el archivo de imagen en la variable imageFile
+                          Uint8List imageBytes = _image!.readAsBytesSync();
+                          // Carga los bytes de la imagen en la variable imageBytes
+                          Image image = decodeImage(imageBytes);
+                          Image blackAndWhiteImage = grayscale(image); */
+                          
                           classifyImageFile(_image!);
                         }
                       : null,

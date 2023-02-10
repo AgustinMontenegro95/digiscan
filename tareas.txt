@@ -1,7 +1,12 @@
-Json respuesta, mal formato
+Json respuesta, mal formato -> Agu
 
 Textos / emiji carlos
 
 icono / splash
 
 
+Recorda
+1- transformar en negativo
+2- escala de grises.
+3- tamaño 28x28.
+4- aumentar el contraste.
