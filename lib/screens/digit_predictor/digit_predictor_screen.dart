@@ -3,12 +3,15 @@ import 'dart:io';
 
 import 'package:digit_predictor/model/result_model.dart';
 import 'package:digit_predictor/screens/digit_predictor/components/common_buttons.dart';
+import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:image/image.dart' as Img;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:screenshot/screenshot.dart';
 import 'components/select_photo_options_screen.dart';
 
 class DigitPredictorScreen extends StatefulWidget {
@@ -22,6 +25,8 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   File? _image;
 
   List<ResultModel>? _resultList = [];
+
+  ScreenshotController screenshotController = ScreenshotController();
 
   @override
   void initState() {
@@ -102,7 +107,41 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   permissionGranted(ImageSource source) async {
     final image = await ImagePicker().pickImage(source: source);
     if (image == null) return;
-    File? img = File(image.path);
+    // image size (dudoso)
+    var imageBytes = Img.decodeImage(await image.readAsBytes());
+    var resizedImage = Img.copyResize(imageBytes!, width: 28, height: 28);
+    List<int> resizedBytes = Img.encodePng(resizedImage);
+    File resizedFile = File('resized_image.png');
+    await resizedFile.writeAsBytes(resizedBytes);
+    //
+    // aumento de contraste
+    var imageReadBytes = Img.decodeImage(await resizedFile.readAsBytes());
+    // Asigna el archivo de imagen a la variable imageFile
+    int width = imageReadBytes!.width;
+    int height = imageReadBytes.height;
+    for (int y = 0; y < height; y++) {
+      for (int x = 0; x < width; x++) {
+        int pixel = imageReadBytes.getPixel(x, y);
+        int red = Img.getRed(pixel);
+        int green = Img.getGreen(pixel);
+        int blue = Img.getBlue(pixel);
+
+        // Aumenta el contraste multiplicando por un factor
+        red = (red * 1.5).clamp(0, 255).toInt();
+        green = (green * 1.5).clamp(0, 255).toInt();
+        blue = (blue * 1.5).clamp(0, 255).toInt();
+
+        imageReadBytes.setPixelRgba(
+            x, y, red, green, blue, Img.getAlpha(pixel));
+      }
+    }
+    List<int> modifiedBytes = Img.encodePng(imageReadBytes);
+    File modifiedFile = File('contrast_increased_image.png');
+    await modifiedFile.writeAsBytes(modifiedBytes);
+    //
+    File? img = File(modifiedFile.path);
+    //File? img = File(resizedFile.path);
+    //File? img = File(image.path);
     img = await cropImage(imageFile: img);
     setState(() {
       _image = img;
@@ -247,10 +286,19 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                                   )
                                 : ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
-                                    child: Image.file(
-                                      _image!,
-                                      width: 200,
-                                      height: 200,
+                                    child: Screenshot(
+                                      controller: screenshotController,
+                                      child: ColorFiltered(
+                                        colorFilter: const ColorFilter.mode(
+                                          Colors.grey,
+                                          BlendMode.saturation,
+                                        ),
+                                        child: Image.file(
+                                          _image!,
+                                          width: 200,
+                                          height: 200,
+                                        ),
+                                      ),
                                     ),
                                   ),
                           ),
@@ -342,7 +390,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                 const SizedBox(height: 15),
                 CommonButtons(
                   onTap: _image != null
-                      ? () {
+                      ? () async {
                           //funcionalidad
                           //File? _image;
                           //tratar imagen
@@ -350,10 +398,25 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                           /* // Carga el archivo de imagen en la variable imageFile
                           Uint8List imageBytes = _image!.readAsBytesSync();
                           // Carga los bytes de la imagen en la variable imageBytes
-                          Image image = decodeImage(imageBytes);
-                          Image blackAndWhiteImage = grayscale(image); */
-                          
-                          classifyImageFile(_image!);
+                          var image = Img.decodeImage(imageBytes);
+                          Image blackAndWhiteImage =
+                              Img.grayscale(image!) as Image; */
+
+                          //captura de pantalla
+                          Uint8List _imagefile =
+                              await screenshotController.capture(
+                                      delay: const Duration(milliseconds: 10))
+                                  as Uint8List;
+                          //guardar el archivo en el directorio principal de la aplicacion
+                          MimeType type = MimeType.PNG;
+                          String path = await FileSaver.instance.saveFile(
+                              'digit-capture', _imagefile, 'png',
+                              mimeType: type);
+                          //se busca la imagen guardada y se crea un tipo File necesario para poder subir
+                          final file = File(path);
+
+                          classifyImageFile(file);
+                          //classifyImageFile(_image!);
                         }
                       : null,
                   backgroundColor: Colors.black,

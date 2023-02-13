@@ -10,3 +10,21 @@ Recorda
 2- escala de grises.
 3- tamaño 28x28.
 4- aumentar el contraste.
+
+[9:53, 12/2/2023] Tio Negro: Primero y principal.
+Convertirla en una imagen en negativo.
+
+[9:56, 12/2/2023] Tio Negro: Segundo. La imagen debe ser en escala de grises  y con un tamaño (28, 28, 1), esto es,
+Debe tener un tamaño de 28 píxeles de ancho por 28 píxeles de alto. Además debe ser de 1 sólo canal (escala de grises).
+
+[9:58, 12/2/2023] Tio Negro: Tercero. Debes dividir cada píxel entre 255 si lo toma como un entero o 255.0 si los píxeles 
+están como punto flotante.
+
+[9:59, 12/2/2023] Tio Negro: Por último, el cuarto paso. Debes elevar el contraste. Este es un paso importante que se ve ha 
+tener que retocar mucho para que el modelo predica bien.
+
+[10:03, 12/2/2023] Tio Negro: Me olvidaba. El modelo en tensorflow para computadoras la imagen que entra al modelo debe ser 
+de orden (-1, 28, 28, 1), esto es, (imagen número tanto, altura píxel, ancho píxel, número de canales)
+
+[10:03, 12/2/2023] Tio Negro: No se como será en tensorflow lite, que es para celulares y hemos realizado la conversión los 
+otros días.
