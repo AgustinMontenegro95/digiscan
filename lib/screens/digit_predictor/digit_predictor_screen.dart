@@ -315,6 +315,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                     ),
                   ),
                 ),
+                //prueba
                 Container(
                   height: 200.0,
                   width: 200.0,
