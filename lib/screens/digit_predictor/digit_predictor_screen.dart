@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:digit_predictor/model/result_model.dart';
-import 'package:digit_predictor/screens/digit_predictor/components/common_buttons.dart';
-import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter_tflite/flutter_tflite.dart';
-import 'package:image/image.dart' as Img;
+import 'package:file_saver/file_saver.dart';
+import 'package:image/image.dart' as imge;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:invert_colors/invert_colors.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:screenshot/screenshot.dart';
+import 'package:digit_predictor/model/result_model.dart';
+import 'package:digit_predictor/screens/digit_predictor/components/common_buttons.dart';
 import 'components/select_photo_options_screen.dart';
 
 class DigitPredictorScreen extends StatefulWidget {
@@ -42,8 +42,8 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
 
   loadModel() async {
     await Tflite.loadModel(
-      model: "assets/artificialIntelligence/model.tflite",
-      labels: "assets/artificialIntelligence/labels.txt",
+      model: "assets/artificial_intelligence/model.tflite",
+      labels: "assets/artificial_intelligence/labels.txt",
     );
   }
 
@@ -113,23 +113,23 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
     if (image == null) return;
     Directory tempDir = await getTemporaryDirectory();
     // image size
-    var imageBytes = Img.decodeImage(await image.readAsBytes());
-    var resizedImage = Img.copyResize(imageBytes!, width: 28, height: 28);
-    List<int> resizedBytes = Img.encodePng(resizedImage);
+    var imageBytes = imge.decodeImage(await image.readAsBytes());
+    var resizedImage = imge.copyResize(imageBytes!, width: 28, height: 28);
+    List<int> resizedBytes = imge.encodePng(resizedImage);
     File resizedFile = File('${tempDir.path}/resized_image.png');
     await resizedFile.writeAsBytes(resizedBytes);
     //
     // aumento de contraste
-    var imageReadBytes = Img.decodeImage(await resizedFile.readAsBytes());
+    var imageReadBytes = imge.decodeImage(await resizedFile.readAsBytes());
     // Asigna el archivo de imagen a la variable imageFile
     int width = imageReadBytes!.width;
     int height = imageReadBytes.height;
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
         int pixel = imageReadBytes.getPixel(x, y);
-        int red = Img.getRed(pixel);
-        int green = Img.getGreen(pixel);
-        int blue = Img.getBlue(pixel);
+        int red = imge.getRed(pixel);
+        int green = imge.getGreen(pixel);
+        int blue = imge.getBlue(pixel);
 
         // Aumenta el contraste multiplicando por un factor
         red = (red * 1.5).clamp(0, 255).toInt();
@@ -137,10 +137,10 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
         blue = (blue * 1.5).clamp(0, 255).toInt();
 
         imageReadBytes.setPixelRgba(
-            x, y, red, green, blue, Img.getAlpha(pixel));
+            x, y, red, green, blue, imge.getAlpha(pixel));
       }
     }
-    List<int> modifiedBytes = Img.encodePng(imageReadBytes);
+    List<int> modifiedBytes = imge.encodePng(imageReadBytes);
     File modifiedFile = File('${tempDir.path}/contrast_increased_image.png');
     await modifiedFile.writeAsBytes(modifiedBytes);
     //
@@ -260,9 +260,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
+                const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.all(28.0),
                   child: Center(
@@ -297,6 +295,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                                       child: InvertColors(
                                         child: ColorFiltered(
                                           colorFilter: const ColorFilter.mode(
+                                            //supuestamente grey
                                             Colors.white,
                                             BlendMode.saturation,
                                           ),
@@ -465,10 +464,10 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
 
                           // image size
                           var imageBytes =
-                              Img.decodeImage(await file.readAsBytes());
-                          var resizedImage = Img.copyResize(imageBytes!,
+                              imge.decodeImage(await file.readAsBytes());
+                          var resizedImage = imge.copyResize(imageBytes!,
                               width: 28, height: 28);
-                          List<int> resizedBytes = Img.encodePng(resizedImage);
+                          List<int> resizedBytes = imge.encodePng(resizedImage);
                           Directory tempDir = await getTemporaryDirectory();
                           File resizedFile =
                               File('${tempDir.path}/resized_image.png');
@@ -476,16 +475,16 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                           //
                           // aumento de contraste
                           var imageReadBytes =
-                              Img.decodeImage(await resizedFile.readAsBytes());
+                              imge.decodeImage(await resizedFile.readAsBytes());
                           // Asigna el archivo de imagen a la variable imageFile
                           int width = imageReadBytes!.width;
                           int height = imageReadBytes.height;
                           for (int y = 0; y < height; y++) {
                             for (int x = 0; x < width; x++) {
                               int pixel = imageReadBytes.getPixel(x, y);
-                              int red = Img.getRed(pixel);
-                              int green = Img.getGreen(pixel);
-                              int blue = Img.getBlue(pixel);
+                              int red = imge.getRed(pixel);
+                              int green = imge.getGreen(pixel);
+                              int blue = imge.getBlue(pixel);
 
                               // Aumenta el contraste multiplicando por un factor
                               red = (red * 1.5).clamp(0, 255).toInt();
@@ -493,11 +492,11 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                               blue = (blue * 1.5).clamp(0, 255).toInt();
 
                               imageReadBytes.setPixelRgba(
-                                  x, y, red, green, blue, Img.getAlpha(pixel));
+                                  x, y, red, green, blue, imge.getAlpha(pixel));
                             }
                           }
                           List<int> modifiedBytes =
-                              Img.encodePng(imageReadBytes);
+                              imge.encodePng(imageReadBytes);
                           File modifiedFile = File(
                               '${tempDir.path}/contrast_increased_image.png');
                           await modifiedFile.writeAsBytes(modifiedBytes);

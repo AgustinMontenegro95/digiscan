@@ -1,8 +1,5 @@
-Json respuesta, mal formato -> Agu
 
 Textos / emiji carlos
-
-icono / splash
 
 
 Recorda
@@ -30,6 +27,4 @@ de orden (-1, 28, 28, 1), esto es, (imagen número tanto, altura píxel, ancho p
 otros días.
 
 
-
-Error 
-la vista es muy chica
+Icono, achicar

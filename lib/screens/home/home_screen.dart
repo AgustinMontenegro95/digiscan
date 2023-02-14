@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 100,
             bottom: 100,
             child: Image.asset(
-              "assets/Backgrounds/Spline.png",
+              "assets/images/backgrounds/spline.png",
             ),
           ),
           Positioned.fill(
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const RiveAnimation.asset(
-            "assets/RiveAssets/shapes.riv",
+            "assets/rive_assets/shapes.riv",
           ),
           Positioned.fill(
             child: BackdropFilter(

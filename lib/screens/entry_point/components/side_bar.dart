@@ -1,7 +1,6 @@
 import 'package:digit_predictor/screens/entry_point/entry_point.dart';
 import 'package:digit_predictor/screens/habinak_carlos/habinak_carlos_screen.dart';
 import 'package:digit_predictor/screens/help/help_screen.dart';
-import 'package:digit_predictor/screens/home/home_screen.dart';
 import 'package:digit_predictor/screens/montenegro_agustin/montenegro_agustin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
