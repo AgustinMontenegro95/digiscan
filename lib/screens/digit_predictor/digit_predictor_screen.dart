@@ -10,6 +10,8 @@ import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image/image.dart' as Img;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:invert_colors/invert_colors.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'components/select_photo_options_screen.dart';
@@ -23,6 +25,8 @@ class DigitPredictorScreen extends StatefulWidget {
 
 class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   File? _image;
+
+  File? _imageMuestra;
 
   List<ResultModel>? _resultList = [];
 
@@ -107,11 +111,12 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   permissionGranted(ImageSource source) async {
     final image = await ImagePicker().pickImage(source: source);
     if (image == null) return;
-    // image size (dudoso)
+    Directory tempDir = await getTemporaryDirectory();
+    // image size
     var imageBytes = Img.decodeImage(await image.readAsBytes());
     var resizedImage = Img.copyResize(imageBytes!, width: 28, height: 28);
     List<int> resizedBytes = Img.encodePng(resizedImage);
-    File resizedFile = File('resized_image.png');
+    File resizedFile = File('${tempDir.path}/resized_image.png');
     await resizedFile.writeAsBytes(resizedBytes);
     //
     // aumento de contraste
@@ -136,15 +141,16 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
       }
     }
     List<int> modifiedBytes = Img.encodePng(imageReadBytes);
-    File modifiedFile = File('contrast_increased_image.png');
+    File modifiedFile = File('${tempDir.path}/contrast_increased_image.png');
     await modifiedFile.writeAsBytes(modifiedBytes);
     //
-    File? img = File(modifiedFile.path);
-    //File? img = File(resizedFile.path);
-    //File? img = File(image.path);
+    File? imgMuestra = File(modifiedFile.path);
+    //
+    File? img = File(image.path);
     img = await cropImage(imageFile: img);
     setState(() {
       _image = img;
+      _imageMuestra = imgMuestra;
       Navigator.of(context).pop();
     });
   }
@@ -288,15 +294,17 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                                     borderRadius: BorderRadius.circular(20),
                                     child: Screenshot(
                                       controller: screenshotController,
-                                      child: ColorFiltered(
-                                        colorFilter: const ColorFilter.mode(
-                                          Colors.grey,
-                                          BlendMode.saturation,
-                                        ),
-                                        child: Image.file(
-                                          _image!,
-                                          width: 200,
-                                          height: 200,
+                                      child: InvertColors(
+                                        child: ColorFiltered(
+                                          colorFilter: const ColorFilter.mode(
+                                            Colors.white,
+                                            BlendMode.saturation,
+                                          ),
+                                          child: Image.file(
+                                            _image!,
+                                            width: 200,
+                                            height: 200,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -305,6 +313,43 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                         ),
                       ),
                     ),
+                  ),
+                ),
+                //prueba
+                Container(
+                  height: 200.0,
+                  width: 200.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey.shade200,
+                  ),
+                  child: Center(
+                    child: _image == null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/not-image.jpg',
+                              width: 200,
+                              height: 200,
+                            ),
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: InvertColors(
+                              child: ColorFiltered(
+                                colorFilter: const ColorFilter.mode(
+                                  Colors.white,
+                                  BlendMode.saturation,
+                                ),
+                                child: Image.file(
+                                  _imageMuestra!,
+                                  width: 200,
+                                  height: 200,
+                                ),
+                              ),
+                            ),
+                          ),
                   ),
                 ),
                 CommonButtons(
@@ -391,6 +436,9 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                 CommonButtons(
                   onTap: _image != null
                       ? () async {
+                          for (var result in _resultList!) {
+                            print(result);
+                          }
                           //funcionalidad
                           //File? _image;
                           //tratar imagen
@@ -415,7 +463,48 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                           //se busca la imagen guardada y se crea un tipo File necesario para poder subir
                           final file = File(path);
 
-                          classifyImageFile(file);
+                          // image size
+                          var imageBytes =
+                              Img.decodeImage(await file.readAsBytes());
+                          var resizedImage = Img.copyResize(imageBytes!,
+                              width: 28, height: 28);
+                          List<int> resizedBytes = Img.encodePng(resizedImage);
+                          Directory tempDir = await getTemporaryDirectory();
+                          File resizedFile =
+                              File('${tempDir.path}/resized_image.png');
+                          await resizedFile.writeAsBytes(resizedBytes);
+                          //
+                          // aumento de contraste
+                          var imageReadBytes =
+                              Img.decodeImage(await resizedFile.readAsBytes());
+                          // Asigna el archivo de imagen a la variable imageFile
+                          int width = imageReadBytes!.width;
+                          int height = imageReadBytes.height;
+                          for (int y = 0; y < height; y++) {
+                            for (int x = 0; x < width; x++) {
+                              int pixel = imageReadBytes.getPixel(x, y);
+                              int red = Img.getRed(pixel);
+                              int green = Img.getGreen(pixel);
+                              int blue = Img.getBlue(pixel);
+
+                              // Aumenta el contraste multiplicando por un factor
+                              red = (red * 1.5).clamp(0, 255).toInt();
+                              green = (green * 1.5).clamp(0, 255).toInt();
+                              blue = (blue * 1.5).clamp(0, 255).toInt();
+
+                              imageReadBytes.setPixelRgba(
+                                  x, y, red, green, blue, Img.getAlpha(pixel));
+                            }
+                          }
+                          List<int> modifiedBytes =
+                              Img.encodePng(imageReadBytes);
+                          File modifiedFile = File(
+                              '${tempDir.path}/contrast_increased_image.png');
+                          await modifiedFile.writeAsBytes(modifiedBytes);
+                          //
+                          File? img = File(modifiedFile.path);
+
+                          classifyImageFile(img);
                           //classifyImageFile(_image!);
                         }
                       : null,

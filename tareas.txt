@@ -28,3 +28,8 @@ de orden (-1, 28, 28, 1), esto es, (imagen número tanto, altura píxel, ancho p
 
 [10:03, 12/2/2023] Tio Negro: No se como será en tensorflow lite, que es para celulares y hemos realizado la conversión los 
 otros días.
+
+
+
+Error 
+la vista es muy chica
