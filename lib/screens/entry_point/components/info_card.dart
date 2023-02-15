@@ -13,10 +13,11 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blue,
         child: Padding(
-          padding: const EdgeInsets.all(0.5), // Border radius
-          child: ClipOval(child: Image.asset('assets/images/icons/icon.png')),
+          padding: const EdgeInsets.all(2), // Border radius
+          child: ClipOval(
+              child: Image.asset('assets/images/icons/icon-complete.png')),
         ),
       ),
       title: Text(

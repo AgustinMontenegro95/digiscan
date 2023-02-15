@@ -432,6 +432,25 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                   ],
                 ),
                 const SizedBox(height: 15),
+                Stack(
+                  children: [
+                    Image.asset(
+                      'assets/images/loupe.png',
+                      height: 150,
+                    ),
+                    Positioned(
+                      top: 15,
+                      left: 35,
+                      child: Text(
+                        _resultList!.length == 1
+                            ? _resultList![0].label.toString()
+                            : _resultList!.length.toString(),
+                        style: const TextStyle(fontSize: 70),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
                 CommonButtons(
                   onTap: _image != null
                       ? () async {
