@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:digit_predictor/screens/habinak_carlos/components/constant_data_hc.dart';
 import 'package:digit_predictor/utils/social_media_button.dart';
-import 'package:flutter/material.dart';
 
 class BodyHabinakCarlos extends StatelessWidget {
   const BodyHabinakCarlos({super.key});
@@ -25,18 +25,18 @@ class BodyHabinakCarlos extends StatelessWidget {
                       style: const TextStyle(
                           color: Colors.black), //style for all textspan
                       children: [
-                        const TextSpan(
-                            text: "Hola, soy ", style: TextStyle(fontSize: 25)),
                         TextSpan(
-                            text: "Carlos",
+                            text: aWelcomeHC,
+                            style: const TextStyle(fontSize: 25)),
+                        TextSpan(
+                            text: bWelcomeHC,
                             style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.blue.shade800)),
-                        const TextSpan(
-                            text:
-                                ", el\nencargado de la\ninteligencia artificial.",
-                            style: TextStyle(fontSize: 25)),
+                                color: Colors.green.shade800)),
+                        TextSpan(
+                            text: cWelcomeHC,
+                            style: const TextStyle(fontSize: 25)),
                       ],
                     ),
                   ),
@@ -81,9 +81,9 @@ class BodyHabinakCarlos extends StatelessWidget {
                         socialMedia: "linkedin",
                         url:
                             "https://www.linkedin.com/in/carlos-alberto-habi%C3%B1ak-a21b144b/"),
-                    /* SocialMediaButton(
+                    SocialMediaButton(
                         socialMedia: "github",
-                        url: "https://github.com/AgustinMontenegro95"), */
+                        url: "https://github.com/AgustinMontenegro95"),
                     SocialMediaButton(
                         socialMedia: "gmail", email: "carloshabinak@gmail.com"),
                     SocialMediaButton(

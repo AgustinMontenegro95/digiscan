@@ -16,7 +16,7 @@ List<MenuModel> sidebarMenus = [
         stateMachineName: "HOME_interactivity"),
   ),
   MenuModel(
-    title: "Search",
+    title: "Más sobre DigiScan",
     rive: RiveModel(
         src: "assets/rive_assets/icons.riv",
         artboard: "SEARCH",

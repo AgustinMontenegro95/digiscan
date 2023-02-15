@@ -1,7 +1,9 @@
+import 'package:digit_predictor/screens/digit_predictor/digit_predictor_screen.dart';
 import 'package:digit_predictor/screens/entry_point/entry_point.dart';
 import 'package:digit_predictor/screens/habinak_carlos/habinak_carlos_screen.dart';
 import 'package:digit_predictor/screens/help/help_screen.dart';
 import 'package:digit_predictor/screens/montenegro_agustin/montenegro_agustin_screen.dart';
+import 'package:digit_predictor/screens/more_about_digiscan/more_about_digiscan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -37,7 +39,7 @@ class _SideBarState extends State<SideBar> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const InfoCard(
-                name: "Digit Predictor",
+                name: "DigiScan",
                 bio: "App",
               ),
               Padding(
@@ -59,15 +61,53 @@ class _SideBarState extends State<SideBar> {
                           setState(() {
                             selectedSideMenu = menu;
                           });
-                          //borrar
-                          Future.delayed(const Duration(milliseconds: 500), () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const EntryPoint(
-                                        screenRedirect: HelpScreen())));
-                          });
-                          //
+                          // Redirect page
+                          switch (menu.title) {
+                            case "Principal":
+                              Future.delayed(const Duration(milliseconds: 500),
+                                  () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const EntryPoint(
+                                            screenRedirect:
+                                                DigitPredictorScreen())));
+                              });
+                              break;
+                            case "Más sobre DigiScan":
+                              Future.delayed(const Duration(milliseconds: 500),
+                                  () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const EntryPoint(
+                                            screenRedirect:
+                                                MoreAboutDigiScanScreen())));
+                              });
+                              break;
+                            case "Inteligencia Artificial":
+                              Future.delayed(const Duration(milliseconds: 500),
+                                  () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const EntryPoint(
+                                            screenRedirect:
+                                                MontenegroAgustinScreen())));
+                              });
+                              break;
+                            case "Ayuda":
+                              Future.delayed(const Duration(milliseconds: 500),
+                                  () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const EntryPoint(
+                                            screenRedirect: HelpScreen())));
+                              });
+                              break;
+                            default:
+                          }
                         },
                         riveOnInit: (artboard) {
                           menu.rive.status = RiveUtils.getRiveInput(artboard,
