@@ -1,7 +1,7 @@
+import 'package:digiscan/screens/habinak_carlos/components/constant_data_hc.dart';
+import 'package:digiscan/utils/social_media_button.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:digit_predictor/screens/habinak_carlos/components/constant_data_hc.dart';
-import 'package:digit_predictor/utils/social_media_button.dart';
 
 class BodyHabinakCarlos extends StatelessWidget {
   const BodyHabinakCarlos({super.key});
@@ -51,7 +51,7 @@ class BodyHabinakCarlos extends StatelessWidget {
                     padding: const EdgeInsets.all(3), // Border radius
                     child: ClipOval(
                       child: Image.asset(
-                        'assets/images/not-image.jpg',
+                        'assets/images/profile-carlos.jpg',
                         fit: BoxFit.fitHeight,
                       ),
                     ),

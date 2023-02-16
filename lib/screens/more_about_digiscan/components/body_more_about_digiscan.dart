@@ -1,4 +1,10 @@
+import 'dart:io';
+
+import 'package:digiscan/screens/digit_predictor/components/common_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class BodyMoreAboutDigiScan extends StatelessWidget {
   const BodyMoreAboutDigiScan({super.key});
@@ -42,7 +48,23 @@ class BodyMoreAboutDigiScan extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 30),
+            CommonButtons(
+              onTap: () async {
+                ByteData imageData =
+                    await rootBundle.load('assets/images/share.png');
+                Uint8List bytes = imageData.buffer.asUint8List();
+                File file =
+                    File('${(await getTemporaryDirectory()).path}/image.png');
+                await file.writeAsBytes(bytes);
+                Share.shareXFiles([XFile(file.path)],
+                    text: 'Encontranos en Play Store.');
+              },
+              backgroundColor: Colors.purple,
+              textColor: Colors.white,
+              textLabel: "Compartir app",
+            ),
           ],
         ),
       )),

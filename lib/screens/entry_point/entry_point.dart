@@ -1,7 +1,7 @@
 import 'dart:math';
+import 'package:digiscan/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:digit_predictor/constants.dart';
 
 import '../../model/menu_model.dart';
 import 'components/menu_btn.dart';
@@ -119,7 +119,6 @@ class _EntryPointState extends State<EntryPoint>
             ),
           ),
         ],
-        //agregar logo soludev
       ),
     );
   }

@@ -1,4 +1,4 @@
-import 'package:digit_predictor/screens/digit_predictor/components/re_usable_select_photo_button.dart';
+import 'package:digiscan/screens/digit_predictor/components/re_usable_select_photo_button.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 

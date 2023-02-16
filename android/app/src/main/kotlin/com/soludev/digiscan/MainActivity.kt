@@ -1,4 +1,4 @@
-package com.soludev.digitpredictor
+package com.soludev.digiscan
 
 import io.flutter.embedding.android.FlutterActivity
 

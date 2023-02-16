@@ -1,15 +1,15 @@
+import 'package:digiscan/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:digit_predictor/screens/home/home_screen.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const DigitPredictor());
+  runApp(const DigiScan());
 }
 
-class DigitPredictor extends StatelessWidget {
-  const DigitPredictor({super.key});
+class DigiScan extends StatelessWidget {
+  const DigiScan({super.key});
 
   // This widget is the root of your application.
   @override

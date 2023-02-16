@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:digit_predictor/screens/digit_predictor/digit_predictor_screen.dart';
-import 'package:digit_predictor/screens/entry_point/entry_point.dart';
+import 'package:digiscan/screens/digit_predictor/digit_predictor_screen.dart';
+import 'package:digiscan/screens/entry_point/entry_point.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 

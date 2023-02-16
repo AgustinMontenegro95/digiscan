@@ -1,5 +1,5 @@
+import 'package:digiscan/screens/digit_predictor/components/common_buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:digit_predictor/screens/digit_predictor/components/common_buttons.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class BodyHelp extends StatelessWidget {
@@ -30,7 +30,7 @@ class BodyHelp extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Su propósito es atender solicitudes e incidentes internos y externos relacionados a la aplicación.',
+                  'El propósito es atender solicitudes e incidentes internos y externos relacionados a la aplicación.',
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontSize: 18,
@@ -42,19 +42,19 @@ class BodyHelp extends StatelessWidget {
                 ExpansionTile(
                   title: const Text(
                     "No abre cámara y/o galería",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
                   ),
                   children: [
                     const Text(
                       "Debes conceder los permisos de uso a la aplicación. Como modificar estos permisos:\n - Ingresar a \"Modificar permisos\".\n - En la pantalla de información de la aplicación, seleccionar la opción \"Permisos\".\n - Elegir el gadget a modificar los permisos.\n - Seleccionar la opción \"Permitir\".\n - Listo. ",
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 16,
                       ),
                     ),
                     const SizedBox(height: 20),
                     CommonButtons(
                       onTap: () => openAppSettings(),
-                      backgroundColor: Colors.black,
+                      backgroundColor: Colors.purple,
                       textColor: Colors.white,
                       textLabel: "Modificar permisos",
                     ),

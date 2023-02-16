@@ -1,4 +1,4 @@
-import 'package:digit_predictor/screens/help/components/body_help.dart';
+import 'package:digiscan/screens/help/components/body_help.dart';
 import 'package:flutter/material.dart';
 
 class HelpScreen extends StatelessWidget {

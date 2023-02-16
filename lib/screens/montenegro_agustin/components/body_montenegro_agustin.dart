@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:digiscan/screens/montenegro_agustin/components/constant_data_ma.dart';
+import 'package:digiscan/utils/social_media_button.dart';
 import 'package:flutter/material.dart';
-import 'package:digit_predictor/utils/social_media_button.dart';
-import 'package:digit_predictor/screens/montenegro_agustin/components/constant_data_ma.dart';
 
 class BodyMontenegroAgustin extends StatelessWidget {
   const BodyMontenegroAgustin({super.key});

@@ -1,4 +1,4 @@
-import 'package:digit_predictor/screens/habinak_carlos/components/body_habinak_carlos.dart';
+import 'package:digiscan/screens/habinak_carlos/components/body_habinak_carlos.dart';
 import 'package:flutter/material.dart';
 
 class HabinakCarlosScreen extends StatelessWidget {

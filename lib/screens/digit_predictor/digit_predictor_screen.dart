@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:digiscan/model/result_model.dart';
+import 'package:digiscan/screens/digit_predictor/components/common_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -12,8 +14,6 @@ import 'package:image/image.dart' as imge;
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:invert_colors/invert_colors.dart';
-import 'package:digit_predictor/model/result_model.dart';
-import 'package:digit_predictor/screens/digit_predictor/components/common_buttons.dart';
 import 'components/select_photo_options_screen.dart';
 
 class DigitPredictorScreen extends StatefulWidget {

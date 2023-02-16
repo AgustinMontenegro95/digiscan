@@ -1,9 +1,9 @@
-import 'package:digit_predictor/screens/digit_predictor/digit_predictor_screen.dart';
-import 'package:digit_predictor/screens/entry_point/entry_point.dart';
-import 'package:digit_predictor/screens/habinak_carlos/habinak_carlos_screen.dart';
-import 'package:digit_predictor/screens/help/help_screen.dart';
-import 'package:digit_predictor/screens/montenegro_agustin/montenegro_agustin_screen.dart';
-import 'package:digit_predictor/screens/more_about_digiscan/more_about_digiscan_screen.dart';
+import 'package:digiscan/screens/digit_predictor/digit_predictor_screen.dart';
+import 'package:digiscan/screens/entry_point/entry_point.dart';
+import 'package:digiscan/screens/habinak_carlos/habinak_carlos_screen.dart';
+import 'package:digiscan/screens/help/help_screen.dart';
+import 'package:digiscan/screens/montenegro_agustin/montenegro_agustin_screen.dart';
+import 'package:digiscan/screens/more_about_digiscan/more_about_digiscan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -66,7 +66,7 @@ class _SideBarState extends State<SideBar> {
                             case "Principal":
                               Future.delayed(const Duration(milliseconds: 500),
                                   () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const EntryPoint(
@@ -77,7 +77,7 @@ class _SideBarState extends State<SideBar> {
                             case "Más sobre DigiScan":
                               Future.delayed(const Duration(milliseconds: 500),
                                   () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const EntryPoint(
@@ -88,7 +88,7 @@ class _SideBarState extends State<SideBar> {
                             case "Inteligencia Artificial":
                               Future.delayed(const Duration(milliseconds: 500),
                                   () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const EntryPoint(
@@ -99,7 +99,7 @@ class _SideBarState extends State<SideBar> {
                             case "Ayuda":
                               Future.delayed(const Duration(milliseconds: 500),
                                   () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const EntryPoint(
@@ -139,7 +139,7 @@ class _SideBarState extends State<SideBar> {
                             case "Habiñak, Carlos Alberto":
                               Future.delayed(const Duration(milliseconds: 500),
                                   () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const EntryPoint(
@@ -150,7 +150,7 @@ class _SideBarState extends State<SideBar> {
                             case "Montenegro, Agustin":
                               Future.delayed(const Duration(milliseconds: 500),
                                   () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => const EntryPoint(
