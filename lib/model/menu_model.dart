@@ -23,7 +23,7 @@ List<MenuModel> sidebarMenus = [
         stateMachineName: "SEARCH_Interactivity"),
   ),
   MenuModel(
-    title: "Inteligencia Artificial",
+    title: "Proceso de desarrollo",
     rive: RiveModel(
         src: "assets/rive_assets/icons.riv",
         artboard: "LIKE/STAR",

@@ -4,6 +4,7 @@ import 'package:digiscan/screens/habinak_carlos/habinak_carlos_screen.dart';
 import 'package:digiscan/screens/help/help_screen.dart';
 import 'package:digiscan/screens/montenegro_agustin/montenegro_agustin_screen.dart';
 import 'package:digiscan/screens/more_about_digiscan/more_about_digiscan_screen.dart';
+import 'package:digiscan/screens/development_process/process_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -85,7 +86,7 @@ class _SideBarState extends State<SideBar> {
                                                 MoreAboutDigiScanScreen())));
                               });
                               break;
-                            case "Inteligencia Artificial":
+                            case "Proceso de desarrollo":
                               Future.delayed(const Duration(milliseconds: 500),
                                   () {
                                 Navigator.pushReplacement(
@@ -93,7 +94,7 @@ class _SideBarState extends State<SideBar> {
                                     MaterialPageRoute(
                                         builder: (context) => const EntryPoint(
                                             screenRedirect:
-                                                MontenegroAgustinScreen())));
+                                                DevelopmentProcessScreen())));
                               });
                               break;
                             case "Ayuda":
