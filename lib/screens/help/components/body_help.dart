@@ -39,6 +39,33 @@ class BodyHelp extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Divider(color: Colors.grey.withOpacity(0.5)),
+                const ExpansionTile(
+                  title: Text(
+                    "Predecir un dígito",
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                  ),
+                  children: [
+                    Text(
+                      "Para predecir un dígito lo que tienes que hacer es seguir los siguientes pasos:",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        "1) En pantalla principal, debes seleccionar \"Agregar imagen\" para luego abrir la galería o tomar una foto (en caso de no haber concedido antes los permisos, concederlos).\n2) Editar la imagen de modo que el dígito quede centrado dentro del recuadro y confirmar la selección.\n3) Por último, presionar el botón \"Predecir\" que nos brindará el resultado de la predicción.",
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Divider(color: Colors.grey.withOpacity(0.5)),
                 ExpansionTile(
                   title: const Text(
                     "No abre cámara y/o galería",
@@ -46,9 +73,20 @@ class BodyHelp extends StatelessWidget {
                   ),
                   children: [
                     const Text(
-                      "Debes conceder los permisos de uso a la aplicación. Como modificar estos permisos:\n - Ingresar a \"Modificar permisos\".\n - En la pantalla de información de la aplicación, seleccionar la opción \"Permisos\".\n - Elegir el gadget a modificar los permisos.\n - Seleccionar la opción \"Permitir\".\n - Listo. ",
+                      "Debes conceder los permisos de uso a la aplicación. Como modificar estos permisos:",
                       style: TextStyle(
                         fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        "1) Ingresar a \"Modificar permisos\".\n2) En la pantalla de información de la aplicación, seleccionar la opción \"Permisos\".\n3) Elegir el gadget a modificar los permisos.\n4) Seleccionar la opción \"Permitir\" y ¡Listo!",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.justify,
                       ),
                     ),
                     const SizedBox(height: 20),
