@@ -59,7 +59,8 @@ class BodyMoreAboutDigiScan extends StatelessWidget {
                     File('${(await getTemporaryDirectory()).path}/image.png');
                 await file.writeAsBytes(bytes);
                 Share.shareXFiles([XFile(file.path)],
-                    text: 'Encontranos en Play Store.');
+                    text:
+                        'DigiScan, encontranos en Play Store https://play.google.com/store/apps/details?id=com.soludev.digiscan. SoluDev.');
               },
               backgroundColor: Colors.purple,
               textColor: Colors.white,
