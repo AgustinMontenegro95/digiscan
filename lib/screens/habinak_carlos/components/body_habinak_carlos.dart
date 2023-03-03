@@ -93,6 +93,7 @@ class BodyHabinakCarlos extends StatelessWidget {
                         socialMedia: "whatsapp",
                         url: "https://wa.me/3856879520"),
                   ]),
+              const SizedBox(height: 30),
             ],
           ),
         ),

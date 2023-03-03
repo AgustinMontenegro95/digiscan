@@ -86,7 +86,6 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
         : await Permission.storage.request().isGranted;
 
     try {
-      print(status);
       if (status.isGranted) {
         permissionGranted(source);
       } else if (status.isDenied) {

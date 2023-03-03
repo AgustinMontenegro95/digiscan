@@ -12,7 +12,7 @@ class StepDP extends StatelessWidget {
       children: [
         Icon(
           Icons.check,
-          color: Colors.purple.shade700,
+          color: Colors.blue[900],
         ),
         Flexible(
           child: Text(

@@ -18,15 +18,15 @@ class BodyMoreAboutDigiScan extends StatelessWidget {
             const EdgeInsets.only(left: 20, right: 20, bottom: 30, top: 20),
         child: Column(
           children: [
-            const Text(
+            Text(
               'Más DigiScan',
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.deepPurple[900],
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             Stack(
               children: [
                 Positioned(
@@ -62,7 +62,7 @@ class BodyMoreAboutDigiScan extends StatelessWidget {
                     text:
                         'DigiScan, encontranos en Play Store https://play.google.com/store/apps/details?id=com.soludev.digiscan. SoluDev.');
               },
-              backgroundColor: Colors.purple,
+              backgroundColor: Colors.deepPurple,
               textColor: Colors.white,
               textLabel: "Compartir app",
             ),

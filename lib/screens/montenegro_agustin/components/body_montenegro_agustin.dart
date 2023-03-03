@@ -93,6 +93,7 @@ class BodyMontenegroAgustin extends StatelessWidget {
                         socialMedia: "whatsapp",
                         url: "https://wa.me/3854117816"),
                   ]),
+              const SizedBox(height: 30),
             ],
           ),
         ),

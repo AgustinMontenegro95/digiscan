@@ -20,7 +20,7 @@ class DigiScan extends StatelessWidget {
       title: 'Digit Predictor',
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFEEF1F8),
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.deepPurple,
         fontFamily: "Intel",
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,

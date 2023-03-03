@@ -20,10 +20,10 @@ class BodyHelp extends StatelessWidget {
                 highlightColor: Colors.transparent),
             child: Column(
               children: [
-                const Text(
+                Text(
                   'Centro de ayuda',
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.deepPurple[900],
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
@@ -92,7 +92,7 @@ class BodyHelp extends StatelessWidget {
                     const SizedBox(height: 20),
                     CommonButtons(
                       onTap: () => openAppSettings(),
-                      backgroundColor: Colors.purple,
+                      backgroundColor: Colors.deepPurple,
                       textColor: Colors.white,
                       textLabel: "Modificar permisos",
                     ),

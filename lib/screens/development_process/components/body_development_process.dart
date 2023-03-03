@@ -14,10 +14,10 @@ class BodyDevelopmentProcess extends StatelessWidget {
             const EdgeInsets.only(left: 20, right: 20, bottom: 30, top: 20),
         child: Column(
           children: [
-            const Text(
+            Text(
               'Desarrollo',
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.blue[800],
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
