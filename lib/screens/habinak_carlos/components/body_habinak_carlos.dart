@@ -83,7 +83,7 @@ class BodyHabinakCarlos extends StatelessWidget {
                             "https://www.linkedin.com/in/carlos-alberto-habi%C3%B1ak-a21b144b/"),
                     SocialMediaButton(
                         socialMedia: "github",
-                        url: "https://github.com/AgustinMontenegro95"),
+                        url: "https://github.com/chabinak"),
                     SocialMediaButton(
                         socialMedia: "gmail", email: "carloshabinak@gmail.com"),
                     SocialMediaButton(

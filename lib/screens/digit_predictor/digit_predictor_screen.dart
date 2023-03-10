@@ -26,8 +26,6 @@ class DigitPredictorScreen extends StatefulWidget {
 class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   File? _image;
 
-  File? _imageMuestra;
-
   List<ResultModel>? _resultList = [];
 
   ScreenshotController screenshotController = ScreenshotController();
@@ -110,13 +108,19 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   permissionGranted(ImageSource source) async {
     final image = await ImagePicker().pickImage(source: source);
     if (image == null) return;
-    Directory tempDir = await getTemporaryDirectory();
-    // image size
+    /* Directory tempDir = await getTemporaryDirectory();
+    // image size 28x28
     var imageBytes = imge.decodeImage(await image.readAsBytes());
     var resizedImage = imge.copyResize(imageBytes!, width: 28, height: 28);
     List<int> resizedBytes = imge.encodePng(resizedImage);
     File resizedFile = File('${tempDir.path}/resized_image.png');
     await resizedFile.writeAsBytes(resizedBytes);
+    //lista de enteros dividir entre 255
+    print("Soy la lista de enteros:");
+    for (var element in resizedBytes) {
+      print(element);
+    }
+    //
     //
     // aumento de contraste
     var imageReadBytes = imge.decodeImage(await resizedFile.readAsBytes());
@@ -142,14 +146,11 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
     List<int> modifiedBytes = imge.encodePng(imageReadBytes);
     File modifiedFile = File('${tempDir.path}/contrast_increased_image.png');
     await modifiedFile.writeAsBytes(modifiedBytes);
-    //
-    File? imgMuestra = File(modifiedFile.path);
-    //
+    // */
     File? img = File(image.path);
     img = await cropImage(imageFile: img);
     setState(() {
       _image = img;
-      _imageMuestra = imgMuestra;
       Navigator.of(context).pop();
     });
   }
@@ -157,6 +158,8 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
   Future<File?> cropImage({required File imageFile}) async {
     CroppedFile? croppedImage = await ImageCropper().cropImage(
       sourcePath: imageFile.path,
+      /* maxHeight: 28,
+      maxWidth: 28, */
       aspectRatioPresets: [
         CropAspectRatioPreset.square,
       ],
@@ -287,25 +290,11 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                                       height: 200,
                                     ),
                                   )
-                                : ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Screenshot(
-                                      controller: screenshotController,
-                                      child: InvertColors(
-                                        child: ColorFiltered(
-                                          colorFilter: const ColorFilter.mode(
-                                            //supuestamente grey
-                                            Colors.white,
-                                            BlendMode.saturation,
-                                          ),
-                                          child: Image.file(
-                                            _image!,
-                                            width: 200,
-                                            height: 200,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                                : Image.file(
+                                    //fit: BoxFit.contain,
+                                    _image!,
+                                    width: 200,
+                                    height: 200,
                                   ),
                           ),
                         ),
@@ -313,7 +302,7 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                     ),
                   ),
                 ),
-                //prueba
+                //imagen que entra al modelo
                 Container(
                   height: 200.0,
                   width: 200.0,
@@ -332,16 +321,17 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                               height: 200,
                             ),
                           )
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                        : Screenshot(
+                            controller: screenshotController,
                             child: InvertColors(
                               child: ColorFiltered(
                                 colorFilter: const ColorFilter.mode(
-                                  Colors.white,
+                                  Colors.grey,
                                   BlendMode.saturation,
                                 ),
                                 child: Image.file(
-                                  _imageMuestra!,
+                                  //fit: BoxFit.contain,
+                                  _image!,
                                   width: 200,
                                   height: 200,
                                 ),
@@ -490,7 +480,14 @@ class _DigitPredictorScreenState extends State<DigitPredictorScreen> {
                           File resizedFile =
                               File('${tempDir.path}/resized_image.png');
                           await resizedFile.writeAsBytes(resizedBytes);
-                          //
+
+                          ///*
+                          // division entre 255
+                          for (int i = 0; i <= resizedBytes.length; i++) {
+                            resizedBytes[i] = resizedBytes[i] / 255 as int;
+                          }
+
+                          // */
                           // aumento de contraste
                           var imageReadBytes =
                               imge.decodeImage(await resizedFile.readAsBytes());
